@@ -2,24 +2,21 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>PicasaHtml2.3</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css">
-    <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
-    <script>
-      $(document).bind("mobileinit", function() {
-        $.extend($.mobile, {
-          defaultTransition: 'slide'
-        });
-      });
-    </script>
-    <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" href="PicasaHtml.png" />
+    <title>PicasaHtml</title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+
     <script src="PicasaHtml.js"></script>
   </head>
   <body>
-    <div data-role="page" id="main" data-theme="b"> 
-      <div data-role="header">
-        <a data-role="button" data-icon="gear" data-iconpos="left" onclick="javascript:$.mobile.changePage('#conf', 'flip');">設定</a>
-        <h2>PicasaHtml 2.3</h2>
+    <div data-role="page" id="main" data-title="PicasaHtml" data-theme="b"> 
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-role="button" data-icon="gear" data-iconpos="left" onclick="javascript:$.mobile.changePage('#conf', {transition:'flip'});">設定</a>
+        <h2>PicasaHtml</h2>
       </div>
       <div data-role="content">
         <div data-role="fieldcontain">
@@ -44,44 +41,46 @@
           <input type="button" name="get_photos" id="get_photos" value="Get Photos" onclick="javascript:get_photos();">
         </div>
       </div>
-      <div data-role="footer">
+      <div data-role="footer" data-theme="b">
         <h4>&copy; 2011 toshiya240</h4>
       </div>
     </div>
-    <div data-role="page" id="result" data-theme="b"> 
-      <div data-role="header">
+    <div data-role="page" id="result" data-title="PicasaHtml" data-theme="b"> 
+      <div data-role="header" data-position="fixed" data-theme="b">
         <a data-role="button" data-icon="delete" href="#main" data-transition="pop" data-direction="reverse">閉じる</a>
         <h2>結果</h2>
       </div>
       <div data-role="content">
-        <div data-role="fieldcontain">
-          <textarea style="width:98%;height:240px;" name="ta" id="ta"></textarea>
-          <input type="button" name="insert_to_draftpad" id="insert_to_draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insert_to_draftpad();">
-        </div>
-        <ul data-role="listview" id="preview">
+        <ul data-role="listview" id="preview" data-theme="c">
         </ul>
+        <div data-role="fieldcontain">
+          <div id="dpbutton">
+          <input type="button" name="insert_to_draftpad" id="insert_to_draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insert_to_draftpad();">
+          </div>
+          <textarea style="width:98%;height:240px;" name="ta" id="ta"></textarea>
+        </div>
       </div>
-      <div data-role="footer">
+      <div data-role="footer" data-theme="b">
         <h4>&copy; 2011 toshiya240</h4>
       </div>
     </div>
-    <div data-role="page" id="preview_page" data-theme="b" data-back-btn-text="戻る">
-      <div data-role="header">
+    <div data-role="page" id="preview_page" data-title="PicasaHtml" data-theme="b" data-add-back-btn="true" data-back-btn-text="戻る">
+      <div data-role="header" data-position="fixed" data-theme="b">
         <h2>プレビュー</h2>
       </div>
       <div data-role="content">
         <div id="img_preview">
         </div>
       </div>
-      <div data-role="footer">
+      <div data-role="footer" data-theme="b">
         <h4>&copy; 2011 toshiya240</h4>
       </div>
     </div>
-    <div data-role="page" id="conf" data-theme="b"> 
-      <div data-role="header">
-        <a data-role="button" data-icon="check" onclick="javascript:if(save_config()) $.mobile.changePage('#main', 'flip', true);">保存</a>
+    <div data-role="page" id="conf" data-title="PicasaHtml" data-theme="b"> 
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-role="button" data-icon="check" onclick="javascript:if(save_config()) $.mobile.changePage('#main', {transition:'flip', reverse:true});">保存</a>
         <h2>設定</h2>
-        <a data-role="button" data-icon="delete" onclick="javascript:load_config();$.mobile.changePage('#main', 'flip', true);">キャンセル</a>
+        <a data-role="button" data-icon="delete" onclick="javascript:load_config();$.mobile.changePage('#main', {transition:'flip', reverse:true});">キャンセル</a>
       </div>
       <div data-role="content">
         <div data-role="fieldcontain">
@@ -114,9 +113,18 @@
         </div>
         <input type="button" name="clear_storage" id="clear_storage" data-icon="delete" value="データベースをクリアする" onclick="javascript:clear_config();">
       </div>
-      <div data-role="footer">
+      <div data-role="footer" data-theme="b">
         <h4>&copy; 2011 toshiya240</h4>
+      </div>
+    </div>
+    <div data-role="page" id="error_page" data-title="PicasaHtml">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <h2>PicasaHtml</h2>
+      </div>
+      <div data-role="content">
+        <div id="error_msg"></div>
       </div>
     </div>
   </body>
 </html>
+<!-- Version 2.3.2 -->

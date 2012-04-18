@@ -1,3 +1,8 @@
+/*
+ * PicasaHtml.js
+ * @version 2.3.3
+ * @author Toshiya NISHIO(http://www.toshiya240.com)
+ */
 function detectEnv() {
   var ua = navigator.userAgent;
   var mobile = ua.indexOf("Mobile") != -1;
@@ -14,27 +19,6 @@ function detectEnv() {
   }
   return env;
 }
-
-var local = {
-    set: function(key, obj) {
-        this.remove(key);
-        window.localStorage.setItem(key, JSON.stringify(obj));
-    },
-    get: function(key) {
-        var val = window.localStorage.getItem(key);
-        if (val == null || val == "undefined") {
-            return "";
-        } else {
-            return JSON.parse(val);
-        }
-    },
-    remove: function(key) {
-        window.localStorage.removeItem(key);
-    },
-    clear: function() {
-        window.localStorage.clear();
-    }
-};
 
 var cookie = {
     set: function(key, obj) {
@@ -64,16 +48,7 @@ var cookie = {
     }
 };
 
-function getStorage() {
-    var env = detectEnv();
-    if (env == "Automator") {
-        return cookie;
-    } else {
-        return local;
-    }
-}
-
-var storage = null;
+var storage = cookie;
 
 var load_config = function() {
     var conf_userID = storage.get("conf_userID");
@@ -121,33 +96,13 @@ var myProcess = function(objectFromDraftPad) {
     };
 };
 
-function getParams(url) {
-    var params = new Object();
-    var pos = url.indexOf("?");
-    if (pos != -1) {
-        var queryString = url.slice(pos + 1);
-        pos = queryString.indexOf("#");
-        if (pos != -1) {
-            queryString = queryString.slice(0, pos);
-        }
-        var query = queryString.split("&");
-        for (var i in query) {
-            var pair = query[i].split("=");
-            params[pair[0]] = pair[1];
-        }
-    }
-    return params;
-}
-
 function showError(msg) {
     $("#error_msg").text(msg);
     $("<a href='#error_page' data-rel='dialog'></a>").click().remove();
 }
 
 $(function() {
-    storage = getStorage();
     var url = window.location.href;
-    var params = getParams(url);
     var env = detectEnv();
     if (env == "iOS in-app") {
         window.location.href = "draftpad:///webdelegate?load=myProcess";

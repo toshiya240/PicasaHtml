@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.3.3
+ * @version 2.3.4
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -37,7 +37,7 @@ var cookie = {
     },
     remove: function(key) {
         var expires = new Date(1900, 1, 1);
-        document.cookie = key + "=;expires=" + expires.toGMTString();
+        document.cookie = key + "='';expires=" + expires.toGMTString();
     },
     clear: function() {
         var cookies = document.cookie.split("; ");
@@ -76,7 +76,10 @@ var save_config = function() {
 };
 
 var clear_config = function() {
-    storage.clear();
+    //storage.clear();
+    storage.set("conf_userID", "");
+    storage.set("conf_tmp2", ""); 
+    storage.set("conf_fmt", "");
     load_config();
     showError("データベースをクリアしました。");
 };
@@ -272,7 +275,7 @@ function get_photos2(descformat) {
 }
 
 function preview_img(index) {
-    $.mobile.changePage("#preview_page");
+    $.mobile.changePage("#preview_page", {transition:"slide"});
     var img_object = $("#preview").children().eq(index).find("img").clone();
     img_object.removeClass("ui-li-thumb");
     img_object.removeAttr("height");

@@ -6,15 +6,15 @@
     <link rel="apple-touch-icon" href="PicasaHtml.png" />
     <title>PicasaHtml</title>
 
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
     <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 
     <script src="PicasaHtml.js"></script>
   </head>
   <body>
     <div data-role="page" id="main" data-title="PicasaHtml" data-theme="b"> 
-      <div data-role="header" data-theme="b">
+      <div data-role="header" data-position="fixed" data-theme="b">
         <a data-role="button" data-icon="gear" data-iconpos="left" onclick="javascript:$.mobile.changePage('#conf', {transition:'flip'});">設定</a>
         <h2>PicasaHtml</h2>
       </div>
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div data-role="page" id="result" data-title="PicasaHtml" data-theme="b"> 
-      <div data-role="header" data-theme="b">
+      <div data-role="header" data-position="fixed" data-theme="b">
         <a data-role="button" data-icon="delete" href="#main" data-transition="pop" data-direction="reverse">閉じる</a>
         <h2>結果</h2>
       </div>
@@ -65,7 +65,7 @@
       </div>
     </div>
     <div data-role="page" id="preview_page" data-title="PicasaHtml" data-theme="b" data-add-back-btn="true" data-back-btn-text="戻る">
-      <div data-role="header" data-theme="b">
+      <div data-role="header" data-position="fixed" data-theme="b">
         <h2>プレビュー</h2>
       </div>
       <div data-role="content">
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div data-role="page" id="conf" data-title="PicasaHtml" data-theme="b"> 
-      <div data-role="header" data-theme="b">
+      <div data-role="header" data-position="fixed" data-theme="b">
         <a data-role="button" data-icon="check" onclick="javascript:if(save_config()) $.mobile.changePage('#main', {transition:'flip', reverse:true});">保存</a>
         <h2>設定</h2>
         <a data-role="button" data-icon="delete" onclick="javascript:load_config();$.mobile.changePage('#main', {transition:'flip', reverse:true});">キャンセル</a>
@@ -118,7 +118,7 @@
       </div>
     </div>
     <div data-role="page" id="error_page" data-title="PicasaHtml">
-      <div data-role="header" data-theme="b">
+      <div data-role="header" data-position="fixed" data-theme="b">
         <h2>PicasaHtml</h2>
       </div>
       <div data-role="content">
@@ -127,4 +127,3 @@
     </div>
   </body>
 </html>
-<!-- Version 2.3.3 -->

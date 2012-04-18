@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>PicasaHtml2.1</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css">
+    <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+    <script>
+      $(document).bind("mobileinit", function() {
+        $.extend($.mobile, {
+          defaultTransition: 'slide'
+        });
+      });
+    </script>
+    <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+    <script src="PicasaHtml-2.1.js"></script>
+  </head>
+  <body>
+    <div data-role="page" id="main" data-theme="b"> 
+      <div data-role="header">
+        <a data-role="button" data-icon="gear" data-iconpos="left" onclick="javascript:$.mobile.changePage('#conf', 'flip');">設定</a>
+        <h2>PicasaHtml 2.1</h2>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain">
+          <div data-role="controlgroup" data-type="horizontal">
+            <label for="">アルバムを選択してください。 </label>
+            <input type="button" data-icon="refresh" data-iconpos="notext" data-inline="true" onclick="javascript:get_albums();">
+          </div>
+          <select id="album" name="album"></select><br />
+
+          <label for="max">
+            取得する写真の最大枚数を入力してください。<br />
+            <span style="font-size:60%;color:#666;">
+              * "All Albums" を選択した場合のみ適用されます。
+            </span>
+          </label>
+          <input type="text" name="max" id="max"><br />
+
+          <label for="">検索するタグを入力してください。省略可能です。</label>
+          <input type="text" name="tag" id="tag">
+        </div>
+        <div data-inline="true">
+          <input type="button" name="get_photos" id="get_photos" value="Get Photos" onclick="javascript:get_photos();">
+        </div>
+      </div>
+      <div data-role="footer">
+        <h4>&copy; 2011 toshiya240</h4>
+      </div>
+    </div>
+    <div data-role="page" id="result" data-theme="b"> 
+      <div data-role="header">
+        <a data-role="button" data-icon="delete" href="#main" data-transition="pop" data-direction="reverse">閉じる</a>
+        <h2>結果</h2>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain">
+          <textarea style="width:98%;height:240px;" name="ta" id="ta"></textarea>
+          <input type="button" name="insert_to_draftpad" id="insert_to_draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insert_to_draftpad();">
+          <div id="preview">
+          </div>
+        </div>
+      </div>
+      <div data-role="footer">
+        <h4>&copy; 2011 toshiya240</h4>
+      </div>
+    </div>
+    <div data-role="page" id="conf" data-theme="b"> 
+      <div data-role="header">
+        <a data-role="button" data-icon="check" onclick="javascript:if(save_config()) $.mobile.changePage('#main', 'flip', true);">保存</a>
+        <h2>設定</h2>
+        <a data-role="button" data-icon="delete" onclick="javascript:load_config();$.mobile.changePage('#main', 'flip', true);">キャンセル</a>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain">
+          <label for="conf_userID">Picasa のユーザID<br />
+            <span style="font-size:60%;color:#666;">
+              Picasa のユーザID を設定してください。
+            </span>
+          </label>
+          <input type="text" id="conf_userID"><br />
+
+          <label for="conf_tmp">
+            テンプレートのURL<br />
+            <span style="font-size:60%;color:#666;">
+              通常変更不要です。<br />
+              テンプレートをご自分でカスタマイズした場合、
+              アップロードしたファイルのURLを指定してください。
+            </span>
+          </label>
+          <input type="text" id="conf_tmp"><br />
+
+          <label for="conf_fmt">
+            テンプレートのNo.<br />
+            <span style="font-size:60%;color:#666;">
+              上記URLで作成したテンプレートで、
+              使用したいテンプレートの番号を指定してください。
+            </span>
+          </label>
+          <input type="text" id="conf_fmt"><br />
+
+        </div>
+        <input type="button" name="clear_storage" id="clear_storage" data-icon="delete" value="データベースをクリアする" onclick="javascript:clear_config();">
+      </div>
+      <div data-role="footer">
+        <h4>&copy; 2011 toshiya240</h4>
+      </div>
+    </div>
+  </body>
+</html>

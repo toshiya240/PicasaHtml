@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>PicasaHtml2.1</title>
+    <title>PicasaHtml2.2</title>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css">
     <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
     <script>
@@ -13,13 +13,13 @@
       });
     </script>
     <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
-    <script src="PicasaHtml-2.1.js"></script>
+    <script src="PicasaHtml.js"></script>
   </head>
   <body>
     <div data-role="page" id="main" data-theme="b"> 
       <div data-role="header">
         <a data-role="button" data-icon="gear" data-iconpos="left" onclick="javascript:$.mobile.changePage('#conf', 'flip');">設定</a>
-        <h2>PicasaHtml 2.1</h2>
+        <h2>PicasaHtml 2.2</h2>
       </div>
       <div data-role="content">
         <div data-role="fieldcontain">
@@ -57,8 +57,20 @@
         <div data-role="fieldcontain">
           <textarea style="width:98%;height:240px;" name="ta" id="ta"></textarea>
           <input type="button" name="insert_to_draftpad" id="insert_to_draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insert_to_draftpad();">
-          <div id="preview">
-          </div>
+        </div>
+        <ul data-role="listview" id="preview">
+        </ul>
+      </div>
+      <div data-role="footer">
+        <h4>&copy; 2011 toshiya240</h4>
+      </div>
+    </div>
+    <div data-role="page" id="preview_page" data-theme="b" data-back-btn-text="戻る">
+      <div data-role="header">
+        <h2>プレビュー</h2>
+      </div>
+      <div data-role="content">
+        <div id="img_preview">
         </div>
       </div>
       <div data-role="footer">

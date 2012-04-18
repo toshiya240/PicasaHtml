@@ -93,7 +93,24 @@ var get_photos = function() {
           x += items[i].description + "\n\n";
         }
         $("#ta").val(x);
-        $("#preview").html(x);
+        var preview = $("#preview");
+        preview.html(x);
+        $.each(preview.children(), function(i) {
+          var li = $("<li>");
+          var link = $("<a>").attr("href", "javascript:preview_img("+i+");");
+          /*
+           * サムネイル表示時のレンダリングがうまくいかないので
+           * 自前でクラスを設定する。
+           */
+          li.addClass("ui-li-has-thumb");
+          $(this).find("img").addClass("ui-li-thumb");
+
+          link.append($(this));
+          li.append(link);
+          preview.append(li);
+        });
+        preview.listview();
+        preview.listview("refresh");
       }
       $.mobile.pageLoading(true);
       if (!items.length) {
@@ -107,6 +124,15 @@ var get_photos = function() {
       alert(errorThrown);
     }
   });
+};
+
+var preview_img = function(index) {
+  $.mobile.changePage("#preview_page");
+  var img_object = $("#preview").children().eq(index).find("img").clone();
+  img_object.removeClass("ui-li-thumb");
+  img_object.removeAttr("height");
+  img_object.width("100%");
+  $("#img_preview").html(img_object);
 };
 
 var insert_to_draftpad = function() {

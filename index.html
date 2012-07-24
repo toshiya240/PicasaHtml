@@ -34,8 +34,32 @@
           </label>
           <input type="text" name="max" id="max"><br />
 
-          <label for="">検索するタグを入力してください。省略可能です。</label>
-          <input type="text" name="tag" id="tag">
+          <label for="tag">検索するタグを入力してください。省略可能です。</label>
+          <input type="text" name="tag" id="tag"><br />
+
+          <label for="">取得する画像の最大サイズを指定してください。</label>
+          <select id="imgmax">
+            <option value="d" selected>オリジナル</option>
+            <option value="94">94</option>
+            <option value="110">110</option>
+            <option value="128">128</option>
+            <option value="200">200</option>
+            <option value="220">220</option>
+            <option value="288">288</option>
+            <option value="320">320</option>
+            <option value="400">400</option>
+            <option value="512">512</option>
+            <option value="576">576</option>
+            <option value="640">640</option>
+            <option value="720">720</option>
+            <option value="800">800</option>
+            <option value="912">912</option>
+            <option value="1024">1024</option>
+            <option value="1152">1152</option>
+            <option value="1280">1280</option>
+            <option value="1440">1440</option>
+            <option value="1600">1600</option>
+          </select>
         </div>
         <div data-inline="true">
           <input type="button" name="get_photos" id="get_photos" value="Get Photos" onclick="javascript:get_photos();">

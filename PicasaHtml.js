@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.3.5
+ * @version 2.4.0
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -202,8 +202,9 @@ function get_photos2(descformat) {
     if (max_results == "") {
         max_results = "20";
     }
-    url = url + "?kind=photo&alt=json&access=public&imgmax=d&max-results="
-        + (selected_album == "" ? max_results : "999");
+    var imgmax = $("#imgmax").val();
+    url = url + "?kind=photo&alt=json&access=public&imgmax=" + imgmax
+        + "&max-results=" + (selected_album == "" ? max_results : "999");
     var tag = $("#tag").val();
     if (tag != "") {
         url = url + "&tag=" + encodeURIComponent(tag);

@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.4.0
+ * @version 2.5.0
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -50,58 +50,58 @@ var cookie = {
 
 var storage = cookie;
 
-var load_config = function() {
-    var conf_userID = storage.get("conf_userID");
-    var conf_tmp = storage.get("conf_tmp2");
-    var conf_fmt = storage.get("conf_fmt");
+var loadConfig = function() {
+    var confUserID = storage.get("conf_userID");
+    var confTmp = storage.get("conf_tmp2");
+    var confFmt = storage.get("conf_fmt");
 
-    if (conf_tmp == "") conf_tmp = "http://dl.dropbox.com/u/529339/bookmarklet/PicasaTemplate2.csv";
-    if (conf_fmt == "") conf_fmt = 1;
+    if (confTmp == "") confTmp = "http://dl.dropbox.com/u/529339/bookmarklet/PicasaTemplate2.csv";
+    if (confFmt == "") confFmt = 1;
 
-    $("#conf_userID").val(conf_userID);
-    $("#conf_tmp").val(conf_tmp);
-    $("#conf_fmt").val(conf_fmt);
+    $("#conf-userID").val(confUserID);
+    $("#conf-tmp").val(confTmp);
+    $("#conf-fmt").val(confFmt);
 };
 
-var save_config = function() {
-    if ($("#conf_userID").val() == "") {
+var saveConfig = function() {
+    if ($("#conf-userID").val() == "") {
         showError("ユーザID を入力してください。");
         return false;
     }
-    storage.set("conf_userID", $("#conf_userID").val());
-    storage.set("conf_tmp2", $("#conf_tmp").val());
-    storage.set("conf_fmt", $("#conf_fmt").val());
+    storage.set("conf_userID", $("#conf-userID").val());
+    storage.set("conf_tmp2", $("#conf-tmp").val());
+    storage.set("conf_fmt", $("#conf-fmt").val());
 
     return true;
 };
 
-var clear_config = function() {
+var clearConfig = function() {
     //storage.clear();
     storage.set("conf_userID", "");
     storage.set("conf_tmp2", ""); 
     storage.set("conf_fmt", "");
-    load_config();
+    loadConfig();
     showError("データベースをクリアしました。");
 };
 
-var insert_to_draftpad = function() {
-    insert_to_dp($("#ta").val());
+var insertToDraftpad = function() {
+    insertToDp($("#ta").val());
 };
 
 var myProcess = function(objectFromDraftPad) {
-    var original_text = '';
+    var originalText = '';
     if (objectFromDraftPad && objectFromDraftPad.text ) {
-        original_text = objectFromDraftPad.text;
+        originalText = objectFromDraftPad.text;
     };
-    window.insert_to_dp = function(result_html) {
-        var inserting_text = original_text + "\n" + result_html;
-        draftpad.replace(inserting_text, inserting_text.length, 0);
+    window.insertToDp = function(resultHtml) {
+        var insertingText = originalText + "\n" + resultHtml;
+        draftpad.replace(insertingText, insertingText.length, 0);
     };
 };
 
 function showError(msg) {
-    $("#error_msg").text(msg);
-    $("<a href='#error_page' data-rel='dialog'></a>").click().remove();
+    $("#error-msg").text(msg);
+    $("<a href='#error-page' data-rel='dialog'></a>").click().remove();
 }
 
 $(function() {
@@ -113,21 +113,21 @@ $(function() {
     } else {
         $("#dpbutton").hide();
     }
-    load_config();
-    var userID = $("#conf_userID").val();
+    loadConfig();
+    var userID = $("#conf-userID").val();
     if (userID == "") {
         $.mobile.changePage("#conf", {transition:"flip"});
     } else {
-        get_albums();
+        getAlbums();
     }
 });
 
 
-var picasa_url_base = "http://picasaweb.google.com/data/feed/api/user/"
+var picasaUrlBase = "http://picasaweb.google.com/data/feed/api/user/"
 
-function get_albums() {
-    var userID = $("#conf_userID").val();
-    var url = picasa_url_base + userID + "?kind=album&alt=json"
+function getAlbums() {
+    var userID = $("#conf-userID").val();
+    var url = picasaUrlBase + userID + "?kind=album&alt=json"
         $.mobile.showPageLoadingMsg();
     $.ajax({
         url: url,
@@ -160,11 +160,11 @@ function get_albums() {
     });
 }
 
-function get_photos() {
+function getPhotos() {
     $.mobile.showPageLoadingMsg();
 
-    var url = $("#conf_tmp").val();
-    var fmt = $("#conf_fmt").val();
+    var url = $("#conf-tmp").val();
+    var fmt = $("#conf-fmt").val();
     var descformat = "";
     $.ajax({
         url: url,
@@ -183,7 +183,7 @@ function get_photos() {
                 $.mobile.hidePageLoadingMsg();
                 return;
             }
-            get_photos2(descformat);
+            getPhotos2(descformat);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             $.mobile.hidePageLoadingMsg();
@@ -192,19 +192,19 @@ function get_photos() {
     });
 }
 
-function get_photos2(descformat) {
-    var selected_album = $("#album option:selected").val();
-    var url = picasa_url_base + $("#conf_userID").val();
-    if (selected_album != "") {
-        url = url + "/albumid/" + selected_album;
+function getPhotos2(descformat) {
+    var selectedAlbum = $("#album option:selected").val();
+    var url = picasaUrlBase + $("#conf-userID").val();
+    if (selectedAlbum != "") {
+        url = url + "/albumid/" + selectedAlbum;
     }
-    var max_results = $("#max").val();
-    if (max_results == "") {
-        max_results = "20";
+    var maxResults = $("#max").val();
+    if (maxResults == "") {
+        maxResults = "20";
     }
     var imgmax = $("#imgmax").val();
     url = url + "?kind=photo&alt=json&access=public&imgmax=" + imgmax
-        + "&max-results=" + (selected_album == "" ? max_results : "999");
+        + "&max-results=" + (selectedAlbum == "" ? maxResults : "999");
     var tag = $("#tag").val();
     if (tag != "") {
         url = url + "&tag=" + encodeURIComponent(tag);
@@ -219,7 +219,7 @@ function get_photos2(descformat) {
             var items = data.feed.entry;
             if (items && items.length) {
                 var x = "";
-                if (selected_album == "") {
+                if (selectedAlbum == "") {
                     items = items.reverse();
                 }
                 for (var i = 0; i < items.length; i++) {
@@ -245,7 +245,7 @@ function get_photos2(descformat) {
                 preview.html(x);
                 $.each(preview.children(), function(i) {
                     var li = $("<li>");
-                    var link = $("<a>").attr("href", "javascript:preview_img("+i+");");
+                    var link = $("<a>").attr("href", "javascript:previewImg("+i+");");
                     /*
                      * サムネイル表示時のレンダリングがうまくいかないので
                      * 自前でクラスを設定する。
@@ -275,11 +275,11 @@ function get_photos2(descformat) {
     });
 }
 
-function preview_img(index) {
-    $.mobile.changePage("#preview_page", {transition:"slide"});
-    var img_object = $("#preview").children().eq(index).find("img").clone();
-    img_object.removeClass("ui-li-thumb");
-    img_object.removeAttr("height");
-    img_object.width("100%");
-    $("#img_preview").html(img_object);
+function previewImg(index) {
+    $.mobile.changePage("#preview-page", {transition:"slide"});
+    var imgObject = $("#preview").children().eq(index).find("img").clone();
+    imgObject.removeClass("ui-li-thumb");
+    imgObject.removeAttr("height");
+    imgObject.width("100%");
+    $("#img-preview").html(imgObject);
 }

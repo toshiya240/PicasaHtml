@@ -22,7 +22,7 @@
         <div data-role="fieldcontain">
           <div data-role="controlgroup" data-type="horizontal">
             <label for="">アルバムを選択してください。 </label>
-            <input type="button" data-icon="refresh" data-iconpos="notext" data-inline="true" onclick="javascript:get_albums();">
+            <input type="button" data-icon="refresh" data-iconpos="notext" data-inline="true" onclick="javascript:getAlbums();">
           </div>
           <select id="album" name="album"></select><br />
 
@@ -62,7 +62,7 @@
           </select>
         </div>
         <div data-inline="true">
-          <input type="button" name="get_photos" id="get_photos" value="Get Photos" onclick="javascript:get_photos();">
+          <input type="button" name="get-photos" id="get-photos" value="Get Photos" onclick="javascript:getPhotos();">
         </div>
       </div>
       <div data-role="footer" data-theme="b">
@@ -79,7 +79,7 @@
         </ul>
         <div data-role="fieldcontain">
           <div id="dpbutton">
-          <input type="button" name="insert_to_draftpad" id="insert_to_draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insert_to_draftpad();">
+          <input type="button" name="insert-to-draftpad" id="insert-to-draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insertToDraftpad();">
           </div>
           <textarea style="width:98%;height:240px;" name="ta" id="ta"></textarea>
         </div>
@@ -88,12 +88,12 @@
         <h4>&copy; 2011-2012 toshiya240</h4>
       </div>
     </div>
-    <div data-role="page" id="preview_page" data-title="PicasaHtml" data-theme="b" data-add-back-btn="true" data-back-btn-text="戻る">
+    <div data-role="page" id="preview-page" data-title="PicasaHtml" data-theme="b" data-add-back-btn="true" data-back-btn-text="戻る">
       <div data-role="header" data-position="fixed" data-theme="b">
         <h2>プレビュー</h2>
       </div>
       <div data-role="content">
-        <div id="img_preview">
+        <div id="img-preview">
         </div>
       </div>
       <div data-role="footer" data-theme="b">
@@ -102,20 +102,20 @@
     </div>
     <div data-role="page" id="conf" data-title="PicasaHtml" data-theme="b"> 
       <div data-role="header" data-position="fixed" data-theme="b">
-        <a data-role="button" data-icon="check" onclick="javascript:if(save_config()) $.mobile.changePage('#main', {transition:'flip', reverse:true});">保存</a>
+        <a data-role="button" data-icon="check" onclick="javascript:if(saveConfig()) $.mobile.changePage('#main', {transition:'flip', reverse:true});">保存</a>
         <h2>設定</h2>
-        <a data-role="button" data-icon="delete" onclick="javascript:load_config();$.mobile.changePage('#main', {transition:'flip', reverse:true});">キャンセル</a>
+        <a data-role="button" data-icon="delete" onclick="javascript:loadConfig();$.mobile.changePage('#main', {transition:'flip', reverse:true});">キャンセル</a>
       </div>
       <div data-role="content">
         <div data-role="fieldcontain">
-          <label for="conf_userID">Picasa のユーザID<br />
+          <label for="conf-userID">Picasa のユーザID<br />
             <span style="font-size:60%;color:#666;">
               Picasa のユーザID を設定してください。
             </span>
           </label>
-          <input type="text" id="conf_userID"><br />
+          <input type="text" id="conf-userID"><br />
 
-          <label for="conf_tmp">
+          <label for="conf-tmp">
             テンプレートのURL<br />
             <span style="font-size:60%;color:#666;">
               通常変更不要です。<br />
@@ -123,30 +123,30 @@
               アップロードしたファイルのURLを指定してください。
             </span>
           </label>
-          <input type="text" id="conf_tmp"><br />
+          <input type="text" id="conf-tmp"><br />
 
-          <label for="conf_fmt">
+          <label for="conf-fmt">
             テンプレートのNo.<br />
             <span style="font-size:60%;color:#666;">
               上記URLで作成したテンプレートで、
               使用したいテンプレートの番号を指定してください。
             </span>
           </label>
-          <input type="text" id="conf_fmt"><br />
+          <input type="text" id="conf-fmt"><br />
 
         </div>
-        <input type="button" name="clear_storage" id="clear_storage" data-icon="delete" value="データベースをクリアする" onclick="javascript:clear_config();">
+        <input type="button" name="clear-storage" id="clear-storage" data-icon="delete" value="データベースをクリアする" onclick="javascript:clearConfig();">
       </div>
       <div data-role="footer" data-theme="b">
         <h4>&copy; 2011-2012 toshiya240</h4>
       </div>
     </div>
-    <div data-role="page" id="error_page" data-title="PicasaHtml">
+    <div data-role="page" id="error-page" data-title="PicasaHtml">
       <div data-role="header" data-position="fixed" data-theme="b">
         <h2>PicasaHtml</h2>
       </div>
       <div data-role="content">
-        <div id="error_msg"></div>
+        <div id="error-msg"></div>
       </div>
     </div>
   </body>

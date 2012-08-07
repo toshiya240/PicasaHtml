@@ -78,10 +78,17 @@
         <ul data-role="listview" id="preview" data-theme="c">
         </ul>
         <div data-role="fieldcontain">
-          <div id="dpbutton">
-          <input type="button" name="insert-to-draftpad" id="insert-to-draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insertToDraftpad();">
+          <div id="mb-buttons">
+            <input type="button" id="insert-to-moblogger" value="Insert to Moblogger" data-inline="true" onclick="javascript:insertToMoblogger();">
+            <input type="button" id="moblogger-pboard" value="Launch Moblogger and copy to pboard" data=inline="ture" onclick="javascript:launchMobloggerAndCopy();">
           </div>
-          <textarea style="width:98%;height:240px;" name="ta" id="ta"></textarea>
+          <div id="dpbutton">
+            <input type="button" id="insert-to-draftpad" value="Insert to DraftPad" data-inline="true" onclick="javascript:insertToDraftpad();">
+          </div>
+          <div id="source-containter" data-role="collapsible">
+            <h3>Show Source</h3>
+            <textarea style="width:98%;height:240px;" id="ta"></textarea>
+          </div>
         </div>
       </div>
       <div data-role="footer" data-theme="b">
@@ -133,7 +140,6 @@
             </span>
           </label>
           <input type="text" id="conf-fmt"><br />
-
         </div>
         <input type="button" name="clear-storage" id="clear-storage" data-icon="delete" value="データベースをクリアする" onclick="javascript:clearConfig();">
       </div>

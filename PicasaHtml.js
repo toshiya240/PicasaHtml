@@ -53,9 +53,8 @@ var storage = cookie;
 var loadConfig = function() {
     var confUserID = storage.get("conf_userID");
     var confTmp = storage.get("conf_tmp2");
-    var confFmt = storage.get("conf_fmt");
-
     if (confTmp == "") confTmp = "http://dl.dropbox.com/u/529339/bookmarklet/PicasaTemplate2.csv";
+    var confFmt = storage.get("conf_fmt");
     if (confFmt == "") confFmt = 1;
 
     $("#conf-userID").val(confUserID);
@@ -84,6 +83,20 @@ var clearConfig = function() {
     showError("データベースをクリアしました。");
 };
 
+var insertToMoblogger = function() {
+    $.mobile.changePage("#main");
+    var text = $("#ta").val();
+    var url = "moblogger://append?text=" + encodeURIComponent(text);
+    window.location = url;
+}
+
+var launchMobloggerAndCopy = function() {
+    $.mobile.changePage("#main");
+    var text = $("#ta").val();
+    var url = "moblogger://pboard?text=" + encodeURIComponent(text);
+    window.location = url;
+}
+
 var insertToDraftpad = function() {
     insertToDp($("#ta").val());
 };
@@ -105,13 +118,15 @@ function showError(msg) {
 }
 
 $(function() {
-    var url = window.location.href;
     var env = detectEnv();
     if (env == "iOS in-app") {
         window.location.href = "draftpad:///webdelegate?load=myProcess";
-        $("#ta").hide();
+        $("#source-containter").hide();
     } else {
         $("#dpbutton").hide();
+    }
+    if (env != "Mobile Safari") {
+        $("#mb-buttons").hide();
     }
     loadConfig();
     var userID = $("#conf-userID").val();

@@ -69,7 +69,10 @@ function saveConfig() {
   storage.set("conf_picasahtml_fmt_index", $("#preset").get(0).selectedIndex);
   var $selectedPreset = $("#preset option:selected");
   if ($selectedPreset.text() == "カスタム") {
-    storage.set("conf_picasahtml_fmt_custom", $("#format").val());
+    var format = $("#format").val();
+    storage.set("conf_picasahtml_fmt_custom", format);
+    var $custom = $('#preset option:contains("カスタム")');
+    $custom.val(format);
   }
 
   return true;

@@ -53,6 +53,10 @@ function loadConfig() {
   var confUserID = storage.get("conf_userID");
   $("#conf-userID").val(confUserID);
 
+  var customFmt = storage.get("conf_picasahtml_fmt_custom");
+  var $custom = $('#preset option:contains("カスタム")');
+  $custom.val(customFmt);
+
   var selectedIndex = storage.get("conf_picasahtml_fmt_index");
   if (!selectedIndex) selectedIndex = 0;
   var $presetSelect = $("#preset");

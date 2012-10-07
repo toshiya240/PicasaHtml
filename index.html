@@ -6,9 +6,9 @@
     <link rel="apple-touch-icon" href="PicasaHtml.png" />
     <title>PicasaHtml</title>
 
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
-    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 
     <script src="PicasaHtml.js"></script>
 
@@ -23,13 +23,11 @@
       <div data-role="header" data-position="fixed" data-theme="b">
         <a data-role="button" data-icon="gear" data-iconpos="left" onclick="javascript:$.mobile.changePage('#conf', {transition:'flip'});">設定</a>
         <h2>PicasaHtml</h2>
+        <a data-role="button" data-icon="refresh" data-iconpos="notext" onclick="javascript:getAlbums();"></a>
       </div>
       <div data-role="content">
         <div data-role="fieldcontain">
-          <div data-role="controlgroup" data-type="horizontal">
-            <label for="">アルバムを選択してください。 </label>
-            <input type="button" data-icon="refresh" data-iconpos="notext" data-inline="true" onclick="javascript:getAlbums();">
-          </div>
+          <label for="album">アルバムを選択してください。 </label>
           <select id="album" name="album" data-theme="c"></select><br />
 
           <label for="max">

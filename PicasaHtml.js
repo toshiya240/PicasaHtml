@@ -181,7 +181,9 @@ function myProcess(objectFromDraftPad) {
 
 function showMsg(msg) {
   $("#error-msg").text(msg);
-  $("<a href='#error-page' data-rel='dialog'></a>").click().remove();
+  $dialog = $("<a href='#error-page' data-rel='dialog'></a>");
+  $dialog.get(0).click();
+  $dialog.remove();
 }
 
 $(function() {

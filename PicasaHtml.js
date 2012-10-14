@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.6.0
+ * @version 2.6.1
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -285,6 +285,11 @@ function getPhotos() {
           var height = content.height;
           var nickname = items[i].media$group.media$credit[0].$t;
           var description = items[i].media$group.media$description.$t;
+          description = description.replace(/&/g, '&amp;');
+          description = description.replace(/</g, '&lt;');
+          description = description.replace(/>/g, '&gt;');
+          description = description.replace(/"/g, '&quot;');
+          description = description.replace(/\n/g, '<br />\n');
           var y = String(descformat);
           y = y.replace(/\${title}/g, title);
           y = y.replace(/\${imgURL}/g, imgURL);

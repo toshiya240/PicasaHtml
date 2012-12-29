@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.6.1
+ * @version 2.7.0
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -164,6 +164,13 @@ function launchMobloggerAndCopy() {
   window.location = url;
 }
 
+function insertToRowline() {
+  $.mobile.changePage("#main");
+  var text = $("#ta").val();
+  var url = "rowline:///set?text=" + encodeURIComponent(text) + "&loc=bottom&view=lines";
+  window.location = url;
+}
+
 function insertToDraftpad() {
   insertToDp($("#ta").val());
 };
@@ -195,7 +202,7 @@ $(function() {
     $("#dpbutton").hide();
   }
   if (env != "Mobile Safari") {
-    $("#mb-buttons").hide();
+    $("#safari-buttons").hide();
   }
   loadConfig();
   var userID = $("#conf-userID").val();

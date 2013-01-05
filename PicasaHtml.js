@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.7.0
+ * @version 2.8.0
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -261,12 +261,30 @@ function getPhotos() {
     url = url + "/albumid/" + selectedAlbum;
   }
   var maxResults = $("#max").val();
-  if (maxResults == "") {
-    maxResults = "20";
+  var displayCount = maxResults;
+  if (selectedAlbum == "") {
+    if (maxResults == "") {
+      displayCount = maxResults = "20";
+    }
+  } else {
+    /* NOTE:
+     *   アルバム指定時に max-results を指定すると古い方から
+     *   指定した件数だけデータが返却される。
+     *   件数を指定する場合は新しい方からの件数としたいため、
+     *   アルバム指定時は全件を取得するようにして、
+     *   表示する際に新しい方から指定された件数だけ表示する。
+     */
+    /* NOTE:
+     *   Picasa のヘルプによるとアルバム当たりの最大数は 1000
+     *   http://support.google.com/picasa/answer/43879/?hl=ja
+     */
+    if (maxResults == "") {
+      displayCount = "1000";
+    }
+    maxResults = "1000";
   }
   var imgmax = $("#imgmax").val();
-  url = url + "?kind=photo&alt=json&access=public&imgmax=" + imgmax
-    + "&max-results=" + (selectedAlbum == "" ? maxResults : "999");
+  url = url + "?kind=photo&alt=json&access=public&imgmax=" + imgmax + "&max-results=" + maxResults;
   var tag = $("#tag").val();
   if (tag != "") {
     url = url + "&tag=" + encodeURIComponent(tag);
@@ -284,7 +302,11 @@ function getPhotos() {
         if (selectedAlbum == "") {
           items = items.reverse();
         }
-        for (var i = 0; i < items.length; i++) {
+        var start = 0;
+        if (displayCount < items.length) {
+          start = items.length - displayCount;
+        }
+        for (var i = start; i < items.length; i++) {
           var title = items[i].media$group.media$title.$t;
           var content = items[i].media$group.media$content[0];
           var imgURL = content.url;

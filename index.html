@@ -32,16 +32,13 @@
 
           <label for="max">
             取得する写真の最大枚数を入力してください。<br />
-            <span style="font-size:60%;color:#666;">
-              * "All Albums" を選択した場合のみ適用されます。
-            </span>
           </label>
-          <input type="text" name="max" id="max"><br />
+          <input data-theme="c" data-highlight="true" type="range" min="1" max="1000" step="1" name="max" id="max"><br />
 
           <label for="tag">検索するタグを入力してください。省略可能です。</label>
           <input type="text" name="tag" id="tag"><br />
 
-          <label for="">取得する画像の最大サイズを指定してください。</label>
+          <label for="">取得する写真の最大サイズを指定してください。</label>
           <select id="imgmax" data-theme="c">
             <option value="d" selected>オリジナル</option>
             <option value="94">94</option>
@@ -70,7 +67,7 @@
         </div>
       </div>
       <div data-role="footer" data-theme="b">
-        <h4>&copy; 2011-2012 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
+        <h4>&copy; 2011-2013 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
       </div>
     </div>
     <div data-role="page" id="result" data-title="PicasaHtml" data-theme="b"> 
@@ -97,7 +94,7 @@
         </div>
       </div>
       <div data-role="footer" data-theme="b">
-        <h4>&copy; 2011-2012 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
+        <h4>&copy; 2011-2013 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
       </div>
     </div>
     <div data-role="page" id="preview-page" data-title="PicasaHtml" data-theme="b" data-add-back-btn="true" data-back-btn-text="戻る">
@@ -109,7 +106,7 @@
         </div>
       </div>
       <div data-role="footer" data-theme="b">
-        <h4>&copy; 2011-2012 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
+        <h4>&copy; 2011-2013 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
       </div>
     </div>
     <div data-role="page" id="conf" data-title="PicasaHtml" data-theme="b"> 
@@ -132,7 +129,7 @@
               Preset を選択してください。<br />
               &quot;カスタム&quot; を選択すると独自のフォーマットを定義可能です。<br />
               [Copy Preset to Custom] ボタンをタップするとプリセットの内容を &quot;カスタム&quot; の値としてコピーすることができます。<br />
-              &quot;カスタム&quot; 選択時は [Insert Placeholder] から画像属性のプレースホルダを挿入することができます。
+              &quot;カスタム&quot; 選択時は [Insert Placeholder] から写真属性のプレースホルダを挿入することができます。
             </span>
           </label>
           <select id="preset" name="preset" data-theme="c"></select><br />
@@ -150,7 +147,7 @@
         -->
       </div>
       <div data-role="footer" data-theme="b">
-        <h4>&copy; 2011-2012 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
+        <h4>&copy; 2011-2013 <a class="sig" href="http://twitter.com/toshiya240" target="blank">toshiya240</a></h4>
       </div>
     </div>
     <div data-role="dialog" id="error-page" data-title="PicasaHtml">

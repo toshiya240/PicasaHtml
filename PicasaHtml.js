@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.8.0
+ * @version 2.9.0
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -150,25 +150,26 @@ function copyPresetToCustom() {
   showMsg("現在選択しているプリセットの内容を「カスタム」にコピーしました。");
 }
 
-function insertToMoblogger() {
+function launchApp(url) {
   $.mobile.changePage("#main");
   var text = $("#ta").val();
-  var url = "moblogger://append?text=" + encodeURIComponent(text);
-  window.location = url;
+  window.location = url + encodeURIComponent(text);
+}
+
+function insertToMoblogger() {
+  launchApp("moblogger://append?text=");
 }
 
 function launchMobloggerAndCopy() {
-  $.mobile.changePage("#main");
-  var text = $("#ta").val();
-  var url = "moblogger://pboard?text=" + encodeURIComponent(text);
-  window.location = url;
+  launchApp("moblogger://pboard?text=");
 }
 
 function insertToRowline() {
-  $.mobile.changePage("#main");
-  var text = $("#ta").val();
-  var url = "rowline:///set?text=" + encodeURIComponent(text) + "&loc=bottom&view=lines";
-  window.location = url;
+  launchApp("rowline:///set?loc=bottom&view=lines&text=");
+}
+
+function sendToTextHandler() {
+  launchApp("myscripts://run?title=TextHandler&text=");
 }
 
 function insertToDraftpad() {

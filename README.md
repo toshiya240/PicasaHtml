@@ -10,7 +10,7 @@ Textwell(iPhone アプリ)の Action として実行することができます�
 
 Textwell がインストールされたデバイス上で以下のリンクをタップするとアクションをインポートすることができます。
 
-* <a href="textwell:///importAction?title=PicasaHtml&iconTitle=Edit&source=location.href%3D%22http%3A%2F%2Fpicasahtml.toshiya240.com%3Ftextwell%22&desc=&confirming=false&translucent=false">アクションをインポート</a>
+* textwell:///importAction?title=PicasaHtml&iconTitle=Edit&source=location.href%3D%22http%3A%2F%2Fpicasahtml.toshiya240.com%3Ftextwell%22&desc=&confirming=false&translucent=false
 
 LICENSE
 -------

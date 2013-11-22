@@ -8,7 +8,7 @@ Textwell
 
 Textwell(iPhone アプリ)の Action として実行することができます。
 
-Textwell がインストールされたデバイス上で以下のリンクをタップするとアクションをインポートすることができます。
+Textwell にアクションをインポートするリンクは以下の通りです。
 
 * textwell:///importAction?title=PicasaHtml&iconTitle=Edit&source=location.href%3D%22http%3A%2F%2Fpicasahtml.toshiya240.com%3Ftextwell%22&desc=&confirming=false&translucent=false
 

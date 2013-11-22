@@ -1,6 +1,6 @@
 /*
  * PicasaHtml.js
- * @version 2.9.0
+ * @version 3.0.0
  * @author Toshiya NISHIO(http://www.toshiya240.com)
  */
 function detectEnv() {
@@ -20,34 +20,26 @@ function detectEnv() {
   return env;
 }
 
-var cookie = {
-  set: function(key, obj) {
-    var expires = new Date(2030, 1, 1);
-    document.cookie = key + "=" + escape(obj) + ";expires=" + expires.toGMTString();
-  },
-  get: function(key) {
-    var cookies = document.cookie.split("; ");
-    for (var i = 0; i < cookies.length; ++i) {
-      var pair = cookies[i].split("=");
-      if (pair[0] == key) {
-        return unescape(pair[1]);
-      }
+var storage = {
+    set: function(key, obj) {
+        this.remove(key);
+        window.localStorage.setItem(key, JSON.stringify(obj));
+    },
+    get: function(key) {
+        var val = window.localStorage.getItem(key);
+        if (val === null || val === "undefined") {
+            return "";
+        } else {
+            return JSON.parse(val);
+        }
+    },
+    remove: function(key) {
+        window.localStorage.removeItem(key);
+    },
+    clear: function() {
+        window.localStorage.clear();
     }
-    return "";
-  },
-  remove: function(key) {
-    var expires = new Date(1900, 1, 1);
-    document.cookie = key + "='';expires=" + expires.toGMTString();
-  },
-  clear: function() {
-    var cookies = document.cookie.split("; ");
-    for (var i = 0; i < cookies.length; ++i) {
-      var pair = cookies[i].split("=");
-      this.remove(pair[0]);
-    }
-  }
 };
-var storage = cookie;
 
 function loadConfig() {
   var confUserID = storage.get("conf_userID");
@@ -62,10 +54,10 @@ function loadConfig() {
   var $presetSelect = $("#preset");
   $presetSelect.get(0).selectedIndex = selectedIndex;
   presetSelectionChanged();
-};
+}
 
 function saveConfig() {
-  if ($("#conf-userID").val() == "") {
+  if ($("#conf-userID").val() === "") {
     showMsg("ユーザID を入力してください。");
     return false;
   }
@@ -80,7 +72,7 @@ function saveConfig() {
   }
 
   return true;
-};
+}
 
 function clearConfig() {
   //storage.clear();
@@ -88,7 +80,7 @@ function clearConfig() {
   storage.set("conf_picasahtml_fmt_index", "0");
   loadConfig();
   showMsg("データベースをクリアしました。");
-};
+}
 
 var preset = {
   '写真のみ(インライン)':"<img class='picasa_photo' src='${imgURL}' alt='${title}' width='${width}' height='${height}' />",
@@ -129,7 +121,7 @@ function insertPlaceholder(label) {
   format.setSelectionRange(npos, npos);
   format.focus();
 }
-$("#main").live("pagebeforecreate", function() {
+$(document).on("pagebeforecreate", "#main", function() {
   var $placeholderSelect = $("#placeholder");
   for (var label in placeholder) {
     $placeholderSelect.append($("<a data-role='button'>").text(label).attr('href', 'javascript:insertPlaceholder("'+label+'");'));
@@ -174,18 +166,18 @@ function sendToTextHandler() {
 
 function insertToDraftpad() {
   insertToDp($("#ta").val());
-};
+}
 
 function myProcess(objectFromDraftPad) {
   var originalText = '';
   if (objectFromDraftPad && objectFromDraftPad.text ) {
     originalText = objectFromDraftPad.text;
-  };
+  }
   window.insertToDp = function(resultHtml) {
     var insertingText = originalText + "\n" + resultHtml;
     draftpad.replace(insertingText, insertingText.length, 0);
   };
-};
+}
 
 function showMsg(msg) {
   $("#error-msg").text(msg);
@@ -207,7 +199,7 @@ $(function() {
   }
   loadConfig();
   var userID = $("#conf-userID").val();
-  if (userID == "") {
+  if (userID === "") {
     $.mobile.changePage("#conf", {transition:"flip"});
   } else {
     getAlbums();
@@ -215,7 +207,7 @@ $(function() {
 });
 
 
-var picasaUrlBase = "http://picasaweb.google.com/data/feed/api/user/"
+var picasaUrlBase = "http://picasaweb.google.com/data/feed/api/user/";
 
 function getAlbums() {
   var userID = $("#conf-userID").val();
@@ -258,13 +250,13 @@ function getPhotos() {
   var descformat = $("#format").val();
   var selectedAlbum = $("#album option:selected").val();
   var url = picasaUrlBase + $("#conf-userID").val();
-  if (selectedAlbum != "") {
+  if (selectedAlbum !== "") {
     url = url + "/albumid/" + selectedAlbum;
   }
   var maxResults = $("#max").val();
   var displayCount = maxResults;
-  if (selectedAlbum == "") {
-    if (maxResults == "") {
+  if (selectedAlbum === "") {
+    if (maxResults === "") {
       displayCount = maxResults = "20";
     }
   } else {
@@ -279,7 +271,7 @@ function getPhotos() {
      *   Picasa のヘルプによるとアルバム当たりの最大数は 1000
      *   http://support.google.com/picasa/answer/43879/?hl=ja
      */
-    if (maxResults == "") {
+    if (maxResults === "") {
       displayCount = "1000";
     }
     maxResults = "1000";
@@ -287,7 +279,7 @@ function getPhotos() {
   var imgmax = $("#imgmax").val();
   url = url + "?kind=photo&alt=json&access=public&imgmax=" + imgmax + "&max-results=" + maxResults;
   var tag = $("#tag").val();
-  if (tag != "") {
+  if (tag !== "") {
     url = url + "&tag=" + encodeURIComponent(tag);
   }
   $.ajax({
@@ -300,7 +292,7 @@ function getPhotos() {
       var items = data.feed.entry;
       if (items && items.length) {
         var x = "";
-        if (selectedAlbum == "") {
+        if (selectedAlbum === "") {
           items = items.reverse();
         }
         var start = 0;
@@ -329,7 +321,7 @@ function getPhotos() {
           y = y.replace(/\${description}/g, description);
           x = x + y + "\n\n";
         }
-        var first = $("#ta").val().length == 0;
+        var first = $("#ta").val().length === 0;
         $("#ta").val(x);
         var preview = $("#preview");
         preview.html(x);

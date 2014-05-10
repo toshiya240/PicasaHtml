@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+  - 2.0.0
+branches:
+  except:
+    - master
+    - gh-pages
+install: echo "Nothing to be installed."
+script: echo "Nothing to be tested(currently)."
+deploy:
+  provider: heroku
+  api_key:
+    secure: XMrlTSOtVY17kl36yl8zWUg/LBf39EYznp7irAjrOSJIk6TYZoae9yNHxQkKbVJRlz3CLM8E1YRhzGKaJlurR/KTJt4ZeyDLPmrv+Hje8memCq7J0D9D3VyWkzgvm6wQWKB1ZFZTY/IfyL0eRKoOudR5QVYUevQICRXtKQz6tO0=
+  app: picasahtml-dev
+  on:
+    repo: toshiya240/PicasaHtml
+    condition: "${TRAVIS_PULL_REQUEST} != 'false'"

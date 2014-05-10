@@ -6,7 +6,9 @@ branches:
     - master
     - gh-pages
 install: echo "Nothing to be installed."
-script: echo "Nothing to be tested(currently)."
+script:
+  - export GITHUB_PULL_REQUEST=${TRAVIS_PULL_REQUEST}
+  - echo "Nothing to be tested(currently)."
 deploy:
   provider: heroku
   api_key:
@@ -14,4 +16,5 @@ deploy:
   app: picasahtml-dev
   on:
     repo: toshiya240/PicasaHtml
-    condition: "${TRAVIS_PULL_REQUEST} != 'false'"
+    condition: "${GITHUB_PULL_REQUEST} != 'false'"
+  run: echo "Deployment done. ${GITHUB_PULL_REQUEST}"

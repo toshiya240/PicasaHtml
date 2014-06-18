@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "0.10"
+  - '0.10'
 branches:
   except:
     - master
@@ -10,7 +10,7 @@ script: grunt
 deploy:
   provider: heroku
   api_key:
-    secure: phXEVu7oldEDXPTp9n2UYpaLxTs66TCd6Vhy9KTnM9xF8AYyUCItQCWLJX6IIdu+nmjlPwmbFxQ1bdgypMSThU63bw6GnUYW1lgPCrTBLvRmT/R5mkF8hsuk3kold40bRWN0yplTZrpJlmAKLjDhxBdqEoirIfDa2Jj3lMcHTec=
+    secure: VswSpDpl/xihNtPSN9OypzG1+4Tnl4fT4KHqDorgJYrnLTbaSlb4FZ+z8FvAwGSM1y9ZOh5IJEm8aduoYW43qW/RTJIa5xlmkHnj9Ji40WqdCj3IQsiuYR1USpNihUO3pIWU2PHgxGmYnTDVMVH6YpjHkGJIYdNHHmunMUt+IrQ=
   skip_cleanup: true
   app: picasahtml-dev
   on:

@@ -29,4 +29,8 @@ after_success:
   - '[ "x$TRAVIS_BRANCH" == "xmaster" ] && git push origin gh-pages'
 env:
   global:
-    secure: j+LS/+N5tPdoTUL+d2mq/pHBL0i+BnRGTMzhNhnxaUPgRIuRU4CU9mR65v+1AQTIw+bnRN5HxZ4nZfc2NYzfo3vlKy+iV2VF9kZHfboJcI1ibkHeCGoPS922GkhASBG8aGZvCoyar2DVoBxi12zGqvZUZuZ/uH72Yqac83K2bmU=
+    - secure: j+LS/+N5tPdoTUL+d2mq/pHBL0i+BnRGTMzhNhnxaUPgRIuRU4CU9mR65v+1AQTIw+bnRN5HxZ4nZfc2NYzfo3vlKy+iV2VF9kZHfboJcI1ibkHeCGoPS922GkhASBG8aGZvCoyar2DVoBxi12zGqvZUZuZ/uH72Yqac83K2bmU=
+    - GIT_COMMITTER_NAME="Toshiya NISHIO"
+    - GIT_COMMITTER_EMAIL="toshiya240@gmail.com"
+    - GIT_AUTHOR_NAME="Toshiya NISHIO"
+    - GIT_AUTHOR_EMAIL="toshiya240@gmail.com"

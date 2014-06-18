@@ -1,0 +1,30 @@
+{
+  "name": "PicasaHtml",
+  "version": "3.0.0",
+  "description": "PicasaHtml ==========",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Toshiya NISHIO",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/toshiya240/PicasaHtml.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-uglify": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-ejs-static": "^0.4.3"
+  },
+  "dependencies": {
+    "basic-auth-connect": "^1.0.0",
+    "express": "^4.4.3"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}

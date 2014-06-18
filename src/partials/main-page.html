@@ -1,0 +1,42 @@
+<div data-role="page" id="main"
+    data-title="<%= app.name %>" data-theme="<%= app.theme %>">
+  <div data-role="header" data-position="fixed" data-theme="<%= app.theme %>">
+    <a data-role="button" data-icon="flat-settings" data-iconpos="left"
+        data-bind="click: showSettings">設定</a>
+    <h2><%= app.name %></h2>
+    <a data-role="button" data-icon="refresh" data-iconpos="notext"
+        data-bind="click: getAlbums"></a>
+  </div>
+  <div data-role="content">
+    <div data-role="fieldcontain">
+      <label for="album">アルバムを選択してください。</label>
+      <select id="album" data-theme="<%= app.theme %>"
+          data-bind="options: albums,
+              optionsText: 'title',
+              value: selectedAlbum">
+      </select><br>
+
+      <label for="max">
+        取得する写真の最大枚数を入力してください。
+      </label>
+      <input data-theme="<%= app.theme %>" data-highlight="true"
+          type="range" min="1" max="1000" step="1" id="max"
+          data-bind="value: maxResults"><br>
+
+      <label for="tag">検索するタグを入力してください。省略可能です。</label>
+      <input id="tag" type="text" data-bind="value: tag"><br>
+
+      <label for="imgmax">取得する写真の最大サイズを指定してください。</label>
+      <select id="imgmax" data-theme="<%= app.theme %>"
+          data-bind="options: imgmax,
+              optionsText: 'name',
+              value: selectedImgmax">
+      </select>
+    </div>
+    <div data-inline="true">
+      <input type="button" id="get-photos" value="Get Photos" data-theme="a"
+          data-bind="click: getPhotos">
+    </div>
+  </div>
+<% include footer.html %>
+</div>

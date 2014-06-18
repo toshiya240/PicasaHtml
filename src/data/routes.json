@@ -1,0 +1,8 @@
+{
+  "index": {
+    "path_to_layout": "src/layouts/index.html",
+    "path_to_data": [
+      "src/data/app.json"
+    ]
+  }
+}

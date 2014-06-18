@@ -1,0 +1,50 @@
+<div data-role="page" id="conf" data-title="<%= app.name %>" data-theme="<%= app.theme %>"> 
+  <div data-role="header" data-position="fixed" data-theme="<%= app.theme %>">
+    <a data-role="button" data-icon="check" data-bind="click: finish">保存</a>
+    <h2>設定</h2>
+    <a data-role="button" data-icon="delete" data-bind="click: discard">キャンセル</a>
+  </div>
+  <div data-role="content">
+    <div data-role="fieldcontain">
+      <label for="conf-userID">Picasa のユーザID<br>
+        <span style="font-size:60%;color:#666;">
+          Picasa のユーザID を設定してください。
+        </span>
+      </label>
+      <input type="text" id="conf-userID" data-bind="value: userId"><br>
+
+      <label for="format">フォーマット<br>
+        <span style="font-size:60%;color:#666;">
+          Preset を選択してください。<br>
+          &quot;カスタム&quot; を選択すると独自のフォーマットを定義可能です。<br>
+          [Copy Preset to Custom] ボタンをタップするとプリセットの内容を &quot;カスタム&quot; の値としてコピーすることができます。<br>
+          &quot;カスタム&quot; 選択時は [Insert Placeholder] から写真属性のプレースホルダを挿入することができます。
+        </span>
+      </label>
+      <select id="preset" name="preset" data-theme="<%= app.theme %>"
+          data-bind="options: availableFormats,
+              optionsText: 'name',
+              value: selectedFormat"></select><br>
+      <textarea id="format"
+          data-bind="value: selectedFormat().value,
+              attr: { readonly: selectedFormat().readonly }">
+      </textarea><br>
+      <div id="copy-preset-container"
+          data-bind="visible: !customIsSelected()">
+        <input type="button" id="copy-preset" value="Copy Preset to Custom"
+            data-bind="click: copyPresetToCustom" />
+      </div>
+      <div id="placeholder-container" data-role="collapsible"
+          data-theme="<%= app.theme %>" data-content-theme="<%= app.theme %>"
+          data-bind="visible: customIsSelected()">
+        <h3>Insert Placeholder</h3>
+        <div id="placeholder" data-role="controlgroup" data-mini="true"
+            data-bind="foreach: placeholders">
+          <a href="#" data-role="button"
+              data-bind="text: name, click: $root.insertPlaceholder"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% include footer.html %>
+</div>

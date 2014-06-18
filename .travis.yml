@@ -6,7 +6,7 @@ branches:
     - master
     - gh-pages
 install: npm install
-script: grunt && rm -rf node_modules
+script: grunt && rm -rf {node_modules,src}
 deploy:
   provider: heroku
   api_key:

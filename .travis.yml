@@ -3,9 +3,14 @@ node_js:
   - '0.10'
 branches:
   except:
-    - master
     - gh-pages
 install: npm install
+before_script:
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\nIdentityFile ~/.ssh/deproy.key\n" >> ~/.ssh/config
+  - openssl aes-256-cbc -k "$SERVER_KEY" -in .travis/deploy_key.enc -d -a -out deploy.key
+  - cp deploy.key ~/.ssh/
+  - chmod 600 ~/.ssh/deploy.key
+  - git clone -b gh-pages --single-branch --depth 1 https://github.com/toshiya240/PicasaHtml site
 script: grunt && rm -rf {node_modules,src}
 deploy:
   provider: heroku
@@ -16,3 +21,11 @@ deploy:
   on:
     repo: toshiya240/PicasaHtml
     branch: develop
+after_success:
+  - cd site
+  - git add --all
+  - git commit -m "Update from Travis JOB $TRAVIS_JOB_NUMBER"
+  - '[ "x$TRAVIS_BRANCH" == "xmaster" ] && git push origin gh-pages'
+env:
+  global:
+    secure: j+LS/+N5tPdoTUL+d2mq/pHBL0i+BnRGTMzhNhnxaUPgRIuRU4CU9mR65v+1AQTIw+bnRN5HxZ4nZfc2NYzfo3vlKy+iV2VF9kZHfboJcI1ibkHeCGoPS922GkhASBG8aGZvCoyar2DVoBxi12zGqvZUZuZ/uH72Yqac83K2bmU=

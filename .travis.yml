@@ -7,7 +7,7 @@ branches:
 install: npm install
 before_script:
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\nIdentityFile ~/.ssh/deproy.key\n" >> ~/.ssh/config
-  - openssl aes-256-cbc -k "$SERVER_KEY" -in .travis/deploy_key.enc -d -a -out deploy.key
+  - openssl aes-256-cbc -k "$SERVER_KEY" -in deploy_key.enc -d -a -out deploy.key
   - cp deploy.key ~/.ssh/
   - chmod 600 ~/.ssh/deploy.key
   - git clone -b gh-pages --single-branch --depth 1 https://github.com/toshiya240/PicasaHtml site

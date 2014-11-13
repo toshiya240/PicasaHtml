@@ -36,6 +36,4 @@ class ResultViewModel
     this.launchApp("myscripts://run?title=TextHandler&text=")
 
   insertToTextwell: () =>
-    T( 'add', {
-        text: @html()
-    })
+    this.launchApp("textwell:///add?text=")

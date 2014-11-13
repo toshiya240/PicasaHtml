@@ -482,9 +482,7 @@
     };
 
     ResultViewModel.prototype.insertToTextwell = function() {
-      return T('add', {
-        text: this.html()
-      });
+      return this.launchApp("textwell:///add?text=");
     };
 
     return ResultViewModel;

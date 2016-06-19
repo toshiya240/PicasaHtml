@@ -1,14 +1,14 @@
 <div data-role="page" id="main"
     data-title="<%= app.name %>" data-theme="<%= app.theme %>">
   <div data-role="header" data-position="fixed" data-theme="<%= app.theme %>">
-    <a data-role="button" data-icon="flat-settings" data-iconpos="left"
+    <a data-role="button" data-icon="gear" data-iconpos="left"
         data-bind="click: showSettings">設定</a>
     <h2><%= app.name %></h2>
     <a data-role="button" data-icon="refresh" data-iconpos="notext"
         data-bind="click: getAlbums"></a>
   </div>
   <div data-role="content">
-    <div data-role="fieldcontain">
+    <div>
       <label for="album">アルバムを選択してください。</label>
       <select id="album" data-theme="<%= app.theme %>"
           data-bind="options: albums,
@@ -34,7 +34,7 @@
       </select>
     </div>
     <div data-inline="true">
-      <input type="button" id="get-photos" value="Get Photos" data-theme="a"
+      <input type="button" id="get-photos" value="Get Photos" data-theme="b"
           data-bind="click: getPhotos">
     </div>
   </div>
